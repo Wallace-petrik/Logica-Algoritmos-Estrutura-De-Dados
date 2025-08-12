@@ -32,13 +32,13 @@ int main(){
         printf("4 /p Buscar\n");
         printf("5 /p Excluir\n");
         printf("6 /p Sair\n:");
-        scanf("%d",&opcao);
+        scanf("%d%*c",&opcao);
         fflush(stdin);
 
         switch(opcao){
             case 1:{
                 system("cls");
-                arquivo = abrirArquivo("livros.dat","ab");
+                arquivo = abrirArquivo("arquivo.dat","ab");
                 printf("\tEntre com os dados do livro !!!\n\n");
                 printf("Código: ");
                     scanf("%d%*c",&livro.codigo);
@@ -50,7 +50,7 @@ int main(){
                     scanf("%[^\n]%*c",&livro.assunto);
                 printf("Editora: ");
                     scanf("%[^\n]%*c",&livro.editora);
-                printf("Ano");
+                printf("Ano: ");
                     scanf("%d%*c",&livro.ano);
                 printf("Edição: ");
                     scanf("%d%*c",&livro.edicao);
@@ -65,7 +65,12 @@ int main(){
                 getchar();
             break;}
             case 2:{
-
+                arquivo = abrirArquivo("arquivo.dat","rb");
+                while(fread(&livro,sizeof(livro),1,arquivo)==1){
+                    printf("Livro: %s\n",livro.titulo);
+                }
+                getchar();
+                fclose(arquivo);
             break;}
             case 3:{
 
