@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <locale.h>
 #include <stdlib.h>
+#include <string.h>
 
 struct{
     int codigo;
@@ -19,7 +20,7 @@ int main(){
 
     int opcao;
 
-    Livro livro;
+    Livro livro,auxLivro;
     FILE *arquivo;
 
 
@@ -76,7 +77,24 @@ int main(){
 
             break;}
             case 4:{
-
+                system("cls");
+                int achou;
+                printf("Digite o nome do livro que está buscando: ");
+                    scanf("%[^\n]%*c",&auxLivro.titulo);
+                arquivo = abrirArquivo("arquivo.dat","rb");
+                while(fread(&livro,sizeof(livro),1,arquivo)==1){
+                        achou = 0;
+                    if(strcmp(auxLivro.titulo,livro.titulo)==0){
+                        printf("O livro %s foi encontrado\n",livro.titulo);
+                        achou = 1;
+                        break;
+                    }
+                }
+                if(!achou){
+                    printf("Livro não encontrado !!!");
+                }
+                getchar();
+                fclose(arquivo);
             break;}
             case 5:{
 
