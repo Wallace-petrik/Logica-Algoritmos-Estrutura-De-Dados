@@ -86,6 +86,9 @@ int main(){
                         achou = 0;
                     if(strcmp(auxLivro.titulo,livro.titulo)==0){
                         printf("O livro %s foi encontrado\n",livro.titulo);
+                        printf("\nCódigo: %d",livro.codigo);
+                        printf("\nTitulo: %s",livro.titulo);
+                        printf("\nAssunto: %s",livro.assunto);
                         achou = 1;
                         break;
                     }
