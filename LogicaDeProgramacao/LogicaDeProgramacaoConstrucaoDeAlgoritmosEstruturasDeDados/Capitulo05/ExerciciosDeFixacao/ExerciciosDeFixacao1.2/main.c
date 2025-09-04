@@ -18,10 +18,10 @@ FILE *abrirArquivo(char *nomeDoArquivo,char *modoDeAbertura);
 int main(){
     setlocale(LC_ALL,"");
 
-    int opcao;
+    int opcao,achou = 0;
 
     Livro livro,auxLivro;
-    FILE *arquivo;
+    FILE *arquivo, *novoArquivo;
 
 
     do{
@@ -97,6 +97,34 @@ int main(){
                 fclose(arquivo);
             break;}
             case 5:{
+
+            achou = 0;
+
+            printf("Digite o nome do livro que deseja excluir: ");
+                scanf("%[^\n]%*c",auxLivro.titulo);
+
+            arquivo = abrirArquivo("arquivo.dat","r+b");
+            novoArquivo = abrirArquivo("novoArquivo.dat","a+b");
+
+            while((fread(&livro,sizeof(livro),1,arquivo))==1){
+                if((strcmp(livro.titulo,auxLivro.titulo))!=0){
+                    fwrite(&livro,sizeof(livro),1,novoArquivo);
+                }else{
+                    achou = 1;
+                }
+            }
+
+            if(!ferror(arquivo) && !ferror(novoArquivo)){
+
+                if(!fclose(arquivo) && !fclose(novoArquivo)){
+                    printf("\nSucesso na operação de exclusão !!!");
+                }else printf("Erro na operação !!! ");
+
+            }else printf("\n\nErro na operação.");
+            getchar();
+
+            remove("arquivo.dat");
+            rename("novoArquivo.dat","arquivo.dat");
 
             break;}
             case 6:{
