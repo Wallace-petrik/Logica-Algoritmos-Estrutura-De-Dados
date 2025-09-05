@@ -18,7 +18,7 @@ FILE *abrirArquivo(char *nomeDoArquivo,char *modoDeAbertura);
 int main(){
     setlocale(LC_ALL,"");
 
-    int opcao,achou = 0;
+    int opcao,achou = 0,cont = 0;
 
     Livro livro,auxLivro;
     FILE *arquivo, *novoArquivo;
@@ -74,6 +74,76 @@ int main(){
                 fclose(arquivo);
             break;}
             case 3:{
+
+                achou = -1;
+
+                arquivo = abrirArquivo("arquivo.dat","r+b");
+
+                printf("Digite o código do livro que deseja alterar: ");
+                    scanf("%d%*c",&auxLivro.codigo);
+
+                while(fread(&livro,sizeof(livro),1,arquivo)==1){
+                    cont++;
+                    if(livro.codigo==auxLivro.codigo){
+                        achou = cont;
+                        break;
+                    }
+
+                }
+
+                if(achou==-1){
+                    printf("\nLivro não encontrado !!!");
+                    getchar();
+                }else{
+
+                    do{
+                    system("cls");
+                    printf("1 para alterar código");
+                    printf("\n2 para alterar titulo");
+                    printf("\n3 para alterar autor");
+                    printf("\n4 para alterar assunto");
+                    printf("\n5 para alterar editora");
+                    printf("\n6 para alterar ano");
+                    printf("\n7 para alterar edicao");
+                    printf("\n8 para voltar ao menu anterior\n:");
+                        scanf("%d%*c",&opcao);
+
+                    switch(opcao){
+
+                        case 1:{
+
+
+
+                        break;}
+                        case 2:{
+
+                        break;}
+                        case 3:{
+
+                        break;}
+                        case 4:{
+
+                        break;}
+                        case 5:{
+
+                        break;}
+                        case 6:{
+
+                        break;}
+                        case 7:{
+
+                        break;}
+                        default:{
+                            if(opcao!=8){
+                                printf("Opção invalida");
+                                getchar();
+                            }
+                        break;}
+
+                    }
+
+                }while(opcao!=8);
+            }
 
             break;}
             case 4:{
