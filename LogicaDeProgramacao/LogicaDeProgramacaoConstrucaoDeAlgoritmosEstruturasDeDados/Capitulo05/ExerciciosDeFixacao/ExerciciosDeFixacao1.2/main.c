@@ -18,7 +18,7 @@ FILE *abrirArquivo(char *nomeDoArquivo,char *modoDeAbertura);
 int main(){
     setlocale(LC_ALL,"");
 
-    int opcao,achou = 0,cont = 0;
+    int opcao,achou,cont;
 
     Livro livro,auxLivro;
     FILE *arquivo, *novoArquivo;
@@ -75,7 +75,8 @@ int main(){
             break;}
             case 3:{
 
-                achou = -1;
+                achou = 0;
+                cont = -1;
 
                 arquivo = abrirArquivo("arquivo.dat","r+b");
 
@@ -91,7 +92,7 @@ int main(){
 
                 }
 
-                if(achou==-1){
+                if(achou==0){
                     printf("\nLivro não encontrado !!!");
                     getchar();
                 }else{
@@ -112,10 +113,13 @@ int main(){
 
                         case 1:{
 
-
+                            printf("Digite o novo código:");
+                                scanf("%d%*c",&livro.codigo);
 
                         break;}
                         case 2:{
+
+
 
                         break;}
                         case 3:{
@@ -143,6 +147,10 @@ int main(){
                     }
 
                 }while(opcao!=8);
+
+                fseek(arquivo,cont*(sizeof(livro)),SEEK_SET);
+                fwrite(&livro,sizeof(livro),1,arquivo);
+
             }
 
             if(!ferror(arquivo)){
