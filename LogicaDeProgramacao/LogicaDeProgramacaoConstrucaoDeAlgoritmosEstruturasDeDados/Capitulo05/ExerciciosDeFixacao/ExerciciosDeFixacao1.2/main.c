@@ -145,6 +145,14 @@ int main(){
                 }while(opcao!=8);
             }
 
+            if(!ferror(arquivo)){
+                if(!fclose(arquivo)){
+                    printf("\nSucesso na operação !!!");
+                }else printf("Erro na operação !!! ");
+
+            }else printf("\n\nErro na operação.");
+            getchar();
+
             break;}
             case 4:{
                 system("cls");
