@@ -119,23 +119,29 @@ int main(){
                         break;}
                         case 2:{
 
-
+                            printf("Digite o novo titulo: ");
+                                scanf("%[^\n]",&livro.titulo);
 
                         break;}
                         case 3:{
-
+                            printf("Digite o nome do Autor:");
+                                scanf("%[^\n*c",&livro.autor);
                         break;}
                         case 4:{
-
+                            printf("DIgite o novo assunto: ");
+                                scanf("%[^\n]",&livro.assunto);
                         break;}
                         case 5:{
-
+                            printf("Digite a nova editora:");
+                                scanf("%[^\n]",&livro.editora);
                         break;}
                         case 6:{
-
+                            printf("Digite o novo ano:");
+                                scanf("%d*c",&livro.ano);
                         break;}
                         case 7:{
-
+                            printf("Digite a nova edição:");
+                                scanf("%d",&livro.edicao);
                         break;}
                         default:{
                             if(opcao!=8){
